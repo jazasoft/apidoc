@@ -110,10 +110,10 @@ This endpoint updates QC for Roll in OptaCut from External System.
 |-----------|---------------------------------------------------------------------------------------------------|
 | search    | Search Query. e.g. `qcAt=ge=1707762600000` for `qcAt` greater than equal to timestamp (in millis) |
 
-## Update Roll QC
+## Update Roll QC by GRN
 
 ```shell
-curl "~/api/external/rolls/qc?externalOrderId=1000" \
+curl "~/api/external/rolls/qc/by-grn?externalInvoiceId=1000" \
   -X PUT \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <access_token>" \
@@ -124,7 +124,129 @@ This endpoint updates QC for Roll in OptaCut from External System.
 
 ### HTTP Request
 
-`PUT ~/api/external/rolls/qc?externalOrderId=<External Order Id>`
+`PUT ~/api/external/rolls/qc/by-grn?externalOrderId=<External Order Id>`
+
+### URL Parameters
+
+| Parameter         | Description                |
+|-------------------|----------------------------|
+| externalInvoiceId | The external ID of Invoice |
+
+### JSON Payload
+
+<pre class="center-column">
+[
+  {
+    "rollNo": "INV-100/R100",
+    "supplierRollNo": "R100",
+    "length": 100.2,
+    "weight": null,
+    "blanketQty": 0,
+    "width": 144,
+    "finishedWidth": null,
+    "gsm": null,
+    "shade": "A",
+    "csv": "Grade 3",
+    "lengthShrinkagePercent": -2.5,
+    "widthShrinkagePercent": -1.5,
+    "lengthPatternValue": 2.0,
+    "widthPatternValue": 1.5,
+    "patternNo": "P1",
+    "skewnessValue": 2.0,
+    "skewnessGroup": "Less than 3.0%",
+    "consignment": "1",
+    "qcStatus": "Pass"
+  },
+  {
+    "rollNo": "INV-100/R101",
+    "supplierRollNo": "R100",
+    "length": null,
+    "weight": 20.5,
+    "blanketQty": 0,
+    "width": 144.2,
+    "finishedWidth": 145.5,
+    "gsm": 150,
+    "shade": "A",
+    "csv": "Grade 3",
+    "lengthShrinkagePercent": -2.5,
+    "widthShrinkagePercent": -1.5,
+    "lengthPatternValue": 2.0,
+    "widthPatternValue": 1.5,
+    "patternNo": "P1",
+    "skewnessValue": 2.0,
+    "skewnessGroup": "Less than 3.0%",
+    "consignment": "1",
+    "qcStatus": "Pass"
+  }
+]
+</pre>
+
+## Schema - Update Roll QC by GRN
+
+```json
+[
+  {
+    "rollNo": "string",
+    "supplierRollNo": "string",
+    "length": "double",
+    "weight": "double",
+    "blanketQty": "int",
+    "width": "double",
+    "finishedWidth": "double",
+    "gsm": "int",
+    "shade": "string",
+    "csv": "string",
+    "lengthShrinkagePercent": "double",
+    "widthShrinkagePercent": "double",
+    "lengthPatternValue": "double",
+    "widthPatternValue": "double",
+    "patternNo": "string",
+    "skewnessValue": "double",
+    "skewnessGroup": "string",
+    "consignment": "string",
+    "qcStatus": "Pass|Fail"
+  }
+]
+```
+**Roll Table**
+
+| Field                  | Type   | Constraints      | Description                                                                         |
+|------------------------|--------|------------------|-------------------------------------------------------------------------------------|
+| rollNo                 | String | Required         | Factory Roll Number                                                                 |
+| supplierRollNo         | String |                  | Supplier Roll Number                                                                |
+| length                 | Double | Required (Woven) | Inspected Length                                                                    |
+| weight                 | Double | Required (Knits) | Inspected Weight                                                                    |
+| blanketQty             | Double |                  | Blanket Qty                                                                         |
+| width                  | Double | Required         | Cuttable Width                                                                      |
+| finishedWidth          | Double | Required (Knits) | Finished Width                                                                      |
+| gsm                    | Double | Required (Knits) | GSM                                                                                 |
+| shade                  | String | Required         | Roll Shade                                                                          |
+| csv                    | String | Required         | Roll CSV values. Accepted values - (`Yes`, `No`, `Grade 3`, `Grade 3-4`, `Grade 4`) |
+| lengthShrinkagePercent | Double |                  | Length wise shrinkage value                                                         |
+| widthShrinkagePercent  | Double |                  | Width wise shrinkage value                                                          |
+| lengthPatternValue     | Double |                  | Length wise pattern value                                                           |
+| widthPatternValue      | Double |                  | Width wise pattern value                                                            |
+| patternNo              | String |                  | Pattern No                                                                          |
+| skewnessValue          | Double |                  | Skewness value                                                                      |
+| skewnessGroup          | String |                  | Skewness Group                                                                      |
+| consignment            | String |                  | Consignment Number                                                                  |
+| qcStatus               | String | Required         | QC Status of Roll. Accepted values - (`Pass`, `Fail`)                               |
+
+## Update Roll QC by Order
+
+```shell
+curl "~/api/external/rolls/qc/by-order?externalOrderId=1000" \
+  -X PUT \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <access_token>" \
+  -d '<JSON Payload>'
+```
+
+This endpoint updates QC for Roll in OptaCut from External System.
+
+### HTTP Request
+
+`PUT ~/api/external/rolls/qc/by-order?externalOrderId=<External Order Id>`
 
 **Note:** URL has been changed from `~/api/external-roll/qc` to `~/api/external/rolls/qc`. Old API will continue to work
 but will be removed in the future. Please, update URL to avoid breaking API
