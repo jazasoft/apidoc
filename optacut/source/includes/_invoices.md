@@ -55,18 +55,34 @@ This endpoint creates a invoice.
           "factoryRollNo": "INV-100/R100",
           "supplierLength": 100.2,
           "supplierWidth": 145,
-          "weight": 50.2,
+          "supplierWeight": 50.2,
           "gsm": 1.2,
-          "extQcStatus": "",
+          "length": 98.5,
+          "weight": 50.0,
+          "cuttableWidth": 144,
+          "shade": "A",
+          "csv": "Grade 3",
+          "warpShrPercent": 2.3,
+          "weftShrPercent": 3.5,
+          "skewnessValue": 5.2,
+          "extQcStatus": "Pass",
         },
         {
           "supplierRollNo": "R101",
           "factoryRollNo": "INV-100/R101",
           "supplierLength": 110.6,
           "supplierWidth": 146,
-          "weight": 50.2,
+          "supplierWeight": 50.2,
           "gsm": 1.2,
-          "extQcStatus": "",
+          "length": 111.0,
+          "weight": 50.3,
+          "cuttableWidth": 145,
+          "shade": "B",
+          "csv": "Grade 4",
+          "warpShrPercent": 2.8,
+          "weftShrPercent": 3.1,
+          "skewnessValue": 7.2,
+          "extQcStatus": "Fail",
         }
       ]
     }
@@ -311,16 +327,23 @@ Schema of invoice entity
 
 **SupplierRoll Table**
 
-| Field          | Type   | Constraints | Description                            |
-|----------------|--------|-------------|----------------------------------------|
-| id             | Number | Primary Key | Internal ID                            |
-| supplierRollNo | String | Required    | Roll Number                            |
-| factoryRollNo  | String |             | Factory/Internal Roll Number           |
-| supplierLength | Float  |             | Supplier Length                        |
-| supplierWeight | Float  |             | Supplier Weight                        |
-| gsm            | Float  |             | GSM value                              |
-| length         | Float  |             | Inspected Length                       |
-| width          | Float  |             | Cuttable Width                         |
-| weight         | Float  |             | Inspected Weight (In Case of Knitwear) |
-| extQcStatus    | String |             | Value: (`Pending`, `Completed`)        |
+| Field          | Type   | Constraints | Description                                                                  |
+|----------------|--------|-------------|------------------------------------------------------------------------------|
+| id             | Number | Primary Key | Internal ID                                                                  |
+| supplierRollNo | String | Required    | Supplier Roll Number                                                         |
+| factoryRollNo  | String |             | Factory/Internal Roll Number                                                 |
+| supplierLength | Float  |             | Supplier Length                                                              |
+| supplierWidth  | Float  |             | Supplier Width                                                               |
+| supplierWeight | Float  |             | Supplier Weight                                                              |
+| gsm            | Float  |             | GSM value of Roll                                                            |
+| length         | Float  |             | Length after QC                                                              |
+| weight         | Float  |             | Weight after QC (Only In Case of Knitwear)                                   |
+| finishedWidth  | Float  |             | Finished Width                                                               |
+| cuttableWidth  | Float  |             | Cuttable Width  after QC                                                     |
+| warpShrPercent | Float  |             | Warp/Length Shrinkage Percent   after QC                                     |
+| weftShrPercent | Float  |             | Weft/Width Shrinkage Percent   after QC                                      |
+| shade          | String |             | Roll Shade after QC                                                          |
+| csv            | String |             | Roll CSV after QC. Values - (`No`, `Yes`, `Grade 3`, `Grade 3-4`, `Grade 4`) |
+| skewnessValue  | Float  |             | Roll Skewness Value  after QC                                                |
+| extQcStatus    | String |             | Value: (`Pending`, `Completed`, `Pass`, `Fail`)                              |
 

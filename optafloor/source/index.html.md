@@ -14,6 +14,7 @@ includes:
   - loading
   - pieceInfo
   - bundleInfo
+  - rfid
   - orderStatusDetails
   - rejectionDetails
   - lineBalancing
@@ -24,6 +25,7 @@ includes:
   - products
   - departments
   - lines
+  - device
   - errors
 
 search: true
