@@ -19,6 +19,8 @@ includes:
   - lineBalancing
   - buyers
   - seasons
+  - machines
+  - machineTypes
   - products
   - departments
   - lines

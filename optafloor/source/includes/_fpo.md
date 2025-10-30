@@ -21,6 +21,7 @@ This endpoint creates a factory production order.
 <pre class="center-column">
 [
   {
+    "externalIds": "1377-WHITE",
     "serialNo": 1,
     "poRef": "1377",
     "seasonId": 1,
@@ -44,6 +45,7 @@ This endpoint creates a factory production order.
     ]
   },
   {
+    "externalIds": "1377-BLACK",
     "serialNo": 2,
     "poRef": "1377",
     "seasonId": 1,
@@ -54,7 +56,7 @@ This endpoint creates a factory production order.
     "productId": 1,
     "style": "A87",
     "styleNo": "",
-    "color": "WHITE",
+    "color": "BLACK",
     "inseam": "32",
     "destination": "UK",
     "delMode": "Air",
@@ -68,6 +70,17 @@ This endpoint creates a factory production order.
   }
 ]
 </pre>
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "code": 200,
+  "message": "Transaction successful"
+}
+```
 
 ## Delete  FPO
 
@@ -93,3 +106,72 @@ This endpoint deletes a specific Factory Production Order.
 | fpo       | Yes      | Factory Production Order Number |
 | inseam    | No       | Inseam                          |
 
+## Schema - FPO - Factory Production
+
+```json
+{
+  "id": "long",
+  "externalIds": "string",
+  "serialNo": "long",
+  "poRef": "string",
+  "seasonId": "long",
+  "buyerId": "long",
+  "productId": "long",
+  "fpo": "string",
+  "customerPoRef": "string",
+  "flowRef": "string",
+  "style": "string",
+  "styleNo": "string",
+  "color": "string",
+  "inseam": "string",
+  "destination": "string",
+  "delMode": "string",
+  "deliveryDate": "2024-06-20",
+  "orderQty": "long",
+  "desc": "string",
+  "sizeBreakupList": [
+    {
+      "id": "long",
+      "sizeGroup": "string",
+      "serialNo": "int",
+      "size": "string",
+      "qty": "int"
+    }
+  ]
+}
+```
+
+**Order Table**
+
+| Field         | Type   | Constraints | Description                                              |
+|---------------|--------|-------------|----------------------------------------------------------|
+| id            | Long   | Primary Key | Internal ID                                              |
+| externlIds    | string | Required    | Combination of some unique value which identify the flow |
+| poRef         | String | Required    | Purchase Order Reference                                 |
+| seasonId      | Long   | Required    | Internal ID of Season                                    |
+| buyerId       | Long   | Required    | Internal ID of Buyer                                     |
+| productId     | Long   | Required    | Internal ID of Product                                   |
+| fpo           | String | Required    | Factory Production Order number                          |
+| customerPoRef | String |             | Customer Flow Reference number                           |
+| flowRef       | String |             | Flow Reference number                                    |
+| style         | String | Required    | Style of the Order                                       |
+| styleNo       | String |             | Style No of the order                                    |
+| color         | String | Required    | Style Color                                              |
+| inseam        | String |             | Inseam if available                                      |
+| destination   | String |             | Destination of Order                                     |
+| delMode       | String |             | Delivery Mode                                            |
+| deliveryDate  | Date   |             | Delivery Date                                            |
+| orderQty      | Long   | Required    | Order Qty of style                                       |
+| desc          | Text   |             | description for Order                                    |
+
+                                                                                  |
+
+**Size Breakup Table**
+
+| Field     | Type   | Constraints | Description            |
+|-----------|--------|-------------|------------------------|
+| id        | Long   | Primary Key | Internal ID            |
+| serialNo  | Int    |             | Sequence of Size       |
+| size      | String | Required    | Size  Name             |
+| sizeGroup | String |             | Size Group Name        |
+| qty       | Int    | Required    | Order qty in this size |
