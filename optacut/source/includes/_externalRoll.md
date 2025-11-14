@@ -124,7 +124,7 @@ This endpoint updates QC for Roll in OptaCut from External System.
 
 ### HTTP Request
 
-`PUT ~/api/external/rolls/qc/by-grn?externalOrderId=<External Order Id>`
+`PUT ~/api/external/rolls/qc/by-grn?externalInvoiceId=<External Invoice Id>`
 
 ### URL Parameters
 
@@ -153,6 +153,7 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "widthPatternValue": 1.5,
     "patternNo": "P1",
     "skewnessValue": 2.0,
+    "shortageExcess": 1.0,
     "skewnessGroup": "Less than 3.0%",
     "consignment": "1",
     "qcStatus": "Pass"
@@ -174,6 +175,7 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "widthPatternValue": 1.5,
     "patternNo": "P1",
     "skewnessValue": 2.0,
+    "shortageExcess": 1.0,
     "skewnessGroup": "Less than 3.0%",
     "consignment": "1",
     "qcStatus": "Pass"
@@ -202,6 +204,7 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "widthPatternValue": "double",
     "patternNo": "string",
     "skewnessValue": "double",
+    "shortageExcess": "double",
     "skewnessGroup": "string",
     "consignment": "string",
     "qcStatus": "Pass|Fail"
@@ -228,6 +231,7 @@ This endpoint updates QC for Roll in OptaCut from External System.
 | widthPatternValue      | Double |                  | Width wise pattern value                                                            |
 | patternNo              | String |                  | Pattern No                                                                          |
 | skewnessValue          | Double |                  | Skewness value                                                                      |
+| shortageExcess         | Double |                  | Shortage/Excess                                                                     |
 | skewnessGroup          | String |                  | Skewness Group                                                                      |
 | consignment            | String |                  | Consignment Number                                                                  |
 | qcStatus               | String | Required         | QC Status of Roll. Accepted values - (`Pass`, `Fail`)                               |
