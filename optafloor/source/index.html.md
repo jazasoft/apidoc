@@ -18,6 +18,7 @@ includes:
   - orderStatusDetails
   - rejectionDetails
   - lineBalancing
+  - users
   - buyers
   - seasons
   - machines
