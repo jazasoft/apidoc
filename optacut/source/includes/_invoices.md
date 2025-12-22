@@ -46,8 +46,8 @@ This endpoint creates a invoice.
       "unitId": "unit1",
       "blanketQty": 0.5,
       "externalOrderIdList": [
-        { "externalOrderId": "1000", "qty": 450 },
-        { "externalOrderId": "1001", "qty": 550 }
+        { "externalOrderId": "1000", "externalFlowRef": "100", "qty": 450 },
+        { "externalOrderId": "1001", "externalFlowRef": "101", "qty": 550 }
       ]
       "supplierRollList": [
         {
