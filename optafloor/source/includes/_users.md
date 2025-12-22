@@ -16,6 +16,70 @@ This endpoint retrieves all users. It supports pagination, sort, search and filt
 
 `GET ~/v1/api/external/users`
 
+## User Batch Create
+
+```shell
+curl "~/v1/api/external/users/batch" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <access_token>" \
+  -d '<JSON Payload>'
+```
+
+This endpoint creates a user.
+
+### HTTP Request
+
+`POST ~/v1/api/external/users/batch`
+
+### JSON Payload
+
+<pre class="center-column">
+[
+  {
+    "externalId": "E-1001",
+    "employeeId": "123545",
+    "fullName": "Test User1",
+    "username": "test1",
+    "email": "test1@gmail.com",
+    "mobile": "1234567890",
+    "roles": "admin",
+    "doj": "2025-01-20",
+    "gradeId": 1,
+    "designationId": 1,
+    "departmentId": 1,
+    "lineIds": [
+      1,
+      2
+    ],
+    "stdHourlySalary": null,
+    "otHourlySalary": null,
+    "enabled": true
+  }
+]
+</pre>
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "createdAt": 1578194175519,
+    "modifiedAt": 1578194175519,
+    "createdBy": "admin_spms",
+    "lastModifiedBy": "admin_spms",
+    "fullName": "Test User1",
+    "username": "test1",
+    "email": "test1@gmail.com",
+    "mobile": "1234567890",
+    "roles": "admin",
+    "employeeId": "123545"
+  }
+]
+```
+
+
 ## Create User
 
 ```shell
