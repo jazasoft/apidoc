@@ -1,25 +1,25 @@
-# MachineTypes
+# Designations
 
-## Get All MachineTypes
+## Get All Designations
 
 ```shell
-curl "~/v1/api/machineTypes" \
+curl "~/v1/api/designations" \
   -H "Authorization: Bearer <access_token>"
 ```
 
-> The above command returns list of all the machineTypes. Refer `Pagination and Sort` and `Schema` Section for exact
+> The above command returns list of all the designations. Refer `Pagination and Sort` and `Schema` Section for exact
 > response structure
 
-This endpoint retrieves all machineTypes. It supports pagination, sort, search and filter
+This endpoint retrieves all designations. It supports pagination, sort, search and filter
 
 ### HTTP Request
 
-`GET ~/api/machineTypes`
+`GET ~/api/designations`
 
-## Get a Specific MachineType
+## Get a Specific Designation
 
 ```shell
-curl "~/v1/api/machineTypes/1" \
+curl "~/v1/api/designations/1" \
   -H "Authorization: Bearer <access_token>"
 ```
 
@@ -27,48 +27,48 @@ curl "~/v1/api/machineTypes/1" \
 
 ```json
 {
-  "id": 1,
-  "name": "SNLS",
-  "desc": "Test Description"
+  "id": 100,
+  "name": "Mechanic",
+  "desc": ""
 }
 ```
 
-This endpoint retrieves a specific machineType.
+This endpoint retrieves a specific designation.
 
 ### HTTP Request
 
-`GET ~/v1/api/machineTypes/{machineTypeId}`
+`GET ~/v1/api/designations/{designationId}`
 
 ### URL Parameters
 
 | Parameter     | Description                           |
 |---------------|---------------------------------------|
-| machineTypeId | The Id of the machineType to retrieve |
+| designationId | The Id of the designation to retrieve |
 
-## Create MachineType
+## Create Designation
 
 ```shell
-curl "~/v1/api/machineTypes" \
+curl "~/v1/api/designations" \
   -X POST \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <access_token>" \
   -d '<JSON Payload>'
 ```
 
-This endpoint creates a machineType.
+This endpoint creates a designation.
 
 ### HTTP Request
 
-`POST ~/v1/api/machineTypes`
+`POST ~/v1/api/designations`
 
 ### JSON Payload
 
 <pre class="center-column">
 {
-    "id" : 1000,
-    "externalId": "E100",
-    "name": "SNLS",
-    "desc": "Test Description"
+  "id": 100,
+  "externalId": "E123",
+  "name": "Mechanic",  
+  "desc": ""
 }
 </pre>
 
@@ -76,40 +76,40 @@ This endpoint creates a machineType.
 
 ```json
 {
-  "id": 1000,
-  "externalId": "E100",
-  "name": "SNLS",
-  "desc": "Test Description"
+  "id": 100,
+  "externalId": "E123",
+  "name": "Mechanic",
+  "desc": ""
 }
 ```
 
-## Update a Specific MachineType
+## Update a Specific Designation
 
 ```shell
-curl "~/v1/api/machineTypes/1" \
+curl "~/v1/api/designations/1" \
   -X PUT \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <access_token>" \
   -d '<JSON Payload>'
 ```
 
-This endpoint updates an existing machineType.
+This endpoint updates an existing designation.
 
 ### HTTP Request
 
-`PUT ~/v1/api/machineTypes/{machineTypeId}`
+`PUT ~/v1/api/designations/{designationId}`
 
 | Parameter     | Description                         |
 |---------------|-------------------------------------|
-| machineTypeId | The Id of the machineType to update |
+| designationId | The Id of the designation to update |
 
 ### JSON Payload
 
 <pre class="center-column">
 {
-      "id": 1,
-      "name": "SNLS-Updated",
-      "desc": "Test Description"
+  "id": 100,
+  "name": "Mechanic",  
+  "desc": ""
 }
 </pre>
 
@@ -117,39 +117,39 @@ This endpoint updates an existing machineType.
 
 ```json
 {
-  "id": 1,
-  "name": "SNLS-Updated",
-  "desc": "Test Description"
+  "id": 100,
+  "name": "Mechanic",
+  "desc": ""
 }
 ```
 
-## Update a Specific MachineType (Using External ID)
+## Update a Specific Designation (Using External Id)
 
 ```shell
-curl "~/v1/api/machineTypes?externalId=E100" \
+curl "~/v1/api/designations?externalId=E123" \
   -X PUT \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <access_token>" \
   -d '<JSON Payload>'
 ```
 
-This endpoint updates an existing machineType.
+This endpoint updates an existing designation.
 
 ### HTTP Request
 
-`PUT ~/v1/api/machineTypes?externalId=<External ID>`
+`PUT ~/v1/api/designations?externalId=<External ID>`
 
 | Parameter  | Description                                  |
 |------------|----------------------------------------------|
-| externalId | The External ID of the machineType to update |
+| externalId | The External Id of the designation to update |
 
 ### JSON Payload
 
 <pre class="center-column">
 {
-      "externalId": "E100",
-      "name": "SNLS-Updated",
-      "desc": "Test Description"
+  "externalId": "E123",
+  "name": "Mechanic",  
+  "desc": ""
 }
 </pre>
 
@@ -157,36 +157,36 @@ This endpoint updates an existing machineType.
 
 ```json
 {
-  "id": 1,
-  "externalId": "E100",
-  "name": "SNLS-Updated",
-  "desc": "Test Description"
+  "id": 100,
+  "externalId": "E123",
+  "name": "Mechanic",
+  "desc": ""
 }
 ```
 
-## Delete a Specific MachineType
+## Delete a Specific Designation
 
 ```shell
-curl "~/v1/api/machineTypes/1"
+curl "~/v1/api/designations/1"
   -X DELETE
   -H "Authorization: Bearer <access_token>"
 ```
 
 > The above command returns empty content with response status `204`
 
-This endpoint deletes a specific machineType.
+This endpoint deletes a specific designation.
 
 ### HTTP Request
 
-`DELETE ~/v1/api/machineTypes/{machineTypeId}`
+`DELETE ~/v1/api/designations/{designationId}`
 
 ### URL Parameters
 
 | Parameter     | Description                         |
 |---------------|-------------------------------------|
-| machineTypeId | The Id of the machineType to delete |
+| designationId | The Id of the designation to delete |
 
-## Schema - MachineType
+## Schema - Designation
 
 ```json
 {
@@ -196,11 +196,11 @@ This endpoint deletes a specific machineType.
 }
 ```
 
-Schema of machineType entity
+Schema of designation entity
 
 | Field      | Type   | Constraints | Description                 |
 |------------|--------|-------------|-----------------------------|
 | id         | Number | Primary Key | Internal ID                 |
 | externalId | Text   | Unique Key  | External ID                 |
-| name       | String | Required    | Name of MachineType         |
-| desc       | Text   |             | description for MachineType |
+| name       | String | Required    | Name of Designation         |
+| desc       | Text   |             | description for Designation |

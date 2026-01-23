@@ -46,6 +46,7 @@ This endpoint creates a user.
     "roles": "admin",
     "doj": "2025-01-20",
     "gradeId": 1,
+    "extDesignationId": "E123",
     "designationId": 1,
     "departmentId": 1,
     "lineIds": [

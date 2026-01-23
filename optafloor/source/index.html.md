@@ -10,6 +10,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 includes:
   - orders
+  - externalOrders
   - fpo
   - loading
   - pieceInfo
@@ -21,11 +22,12 @@ includes:
   - users
   - buyers
   - seasons
-  - machines
-  - machineTypes
   - products
+  - machineTypes
+  - machines
   - departments
   - lines
+  - designations
   - device
   - errors
 
