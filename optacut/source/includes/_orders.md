@@ -56,6 +56,7 @@ curl "~/api/orders/1" \
       "delMode": "Air",
       "orderQty": 1000,
       "extra": 5.0,
+      "shortShipPercent": 5.0,
       "styleImage": null,
       "state": "[{\"state\":\"New\"}]",
       "partList": [
@@ -153,6 +154,7 @@ This endpoint creates an order.
             "color": "Black",
             "orderQty": 1000,
             "extra": 5,
+            "shortShipPercent": 5,
             "inseam":"32Inch",
             "destination": "US",
             "delMode": "Air",
@@ -183,6 +185,7 @@ This endpoint creates an order.
             "color": "Black",
             "orderQty": 1000,
             "extra": 5,
+            "shortShipPercent": 5,
             "inseam":"32Inch",
             "destination": "UK",
             "delMode": "Air",
@@ -248,6 +251,7 @@ This endpoint updates an existing order.
             "color": "Black",
             "orderQty": 1000,
             "extra": 5,
+            "shortShipPercent": 5,
             "inseam":"32Inch",
             "destination": "US",
             "delMode": "Air",
@@ -278,6 +282,7 @@ This endpoint updates an existing order.
             "color": "Black",
             "orderQty": 1000,
             "extra": 5,
+            "shortShipPercent": 5,
             "inseam":"32Inch",
             "destination": "UK",
             "delMode": "Air",
@@ -355,6 +360,7 @@ This endpoint deletes a specific order.
       "delMode": "string",
       "orderQty": "int",
       "extra": "float",
+      "shortShipPercent": "float",
       "partList": [
         {
           "id": "long",
@@ -397,25 +403,26 @@ This endpoint deletes a specific order.
 
 **FlowInfo Table**
 
-| Field           | Type   | Constraints | Description                                     |
-|-----------------|--------|-------------|-------------------------------------------------|
-| id              | Long   | Primary Key | Internal ID                                     |
-| externalId      | String | Unique      | External ID                                     |
-| serialNo        | Long   |             | Sequence                                        |
-| flowRef         | String |             | ERP Reference number at Color Level             |
-| delFlowRef      | String |             | Customer+ERP Reference number at Delivery Level |
-| customerFlowRef | String |             | Customer Reference  number at Color Level       |
-| productId       | Long   | Required    | Internal ID of Product                          |
-| style           | String | Required    | Style Name                                      |
-| styleNo         | String |             | Style Long                                      |
-| fit             | String |             | Fit                                             |
-| inseam          | String |             | Inseam                                          |
-| color           | String | Required    | Style Color                                     |
-| destination     | String |             | Destination                                     |
-| delMode         | String |             | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
-| exFactoryDate   | Date   |             | Delivery Date. Format: `yyyy-MM-dd`             |
-| orderQty        | Int    | Required    | Order Qty in this flow                          |
-| extra           | Float  |             | Allowed Extra percent                           |
+| Field            | Type   | Constraints | Description                                     |
+|------------------|--------|-------------|-------------------------------------------------|
+| id               | Long   | Primary Key | Internal ID                                     |
+| externalId       | String | Unique      | External ID                                     |
+| serialNo         | Long   |             | Sequence                                        |
+| flowRef          | String |             | ERP Reference number at Color Level             |
+| delFlowRef       | String |             | Customer+ERP Reference number at Delivery Level |
+| customerFlowRef  | String |             | Customer Reference  number at Color Level       |
+| productId        | Long   | Required    | Internal ID of Product                          |
+| style            | String | Required    | Style Name                                      |
+| styleNo          | String |             | Style Long                                      |
+| fit              | String |             | Fit                                             |
+| inseam           | String |             | Inseam                                          |
+| color            | String | Required    | Style Color                                     |
+| destination      | String |             | Destination                                     |
+| delMode          | String |             | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
+| exFactoryDate    | Date   |             | Delivery Date. Format: `yyyy-MM-dd`             |
+| orderQty         | Int    | Required    | Order Qty in this flow                          |
+| extra            | Float  |             | Allowed Extra percent                           |
+| shortShipPercent | Float  |             | Short Shipment Tolerance percent                |
 
 **Part Table**
 
