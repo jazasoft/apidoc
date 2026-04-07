@@ -54,6 +54,8 @@ curl "~/api/orders/1" \
       "destination": "US",
       "exFactoryDate": 1685404800000,
       "delMode": "Air",
+      "gender": "Male",
+      "sleeveType": "FULL",
       "orderQty": 1000,
       "extra": 5.0,
       "shortShipPercent": 5.0,
@@ -158,6 +160,8 @@ This endpoint creates an order.
             "inseam":"32Inch",
             "destination": "US",
             "delMode": "Air",
+            "gender": "Male",
+            "sleeveType": "FULL",
             "exFactoryDate": "2023-05-30",
             "flowRef":"REF1",
             "delFlowRef":"D.REF1",
@@ -189,6 +193,8 @@ This endpoint creates an order.
             "inseam":"32Inch",
             "destination": "UK",
             "delMode": "Air",
+            "gender": "Male",
+            "sleeveType": "FULL",
             "exFactoryDate": "2023-05-30",
             "flowRef":"REF1",
             "delFlowRef":"D. REF1",
@@ -255,6 +261,8 @@ This endpoint updates an existing order.
             "inseam":"32Inch",
             "destination": "US",
             "delMode": "Air",
+            "gender": "Male",
+            "sleeveType": "FULL",
             "exFactoryDate": "2023-05-30",
             "flowRef":"REF1",
             "delFlowRef":"D. REF1",
@@ -286,6 +294,8 @@ This endpoint updates an existing order.
             "inseam":"32Inch",
             "destination": "UK",
             "delMode": "Air",
+            "gender": "Male",
+            "sleeveType": "FULL",
             "exFactoryDate": "2023-05-30",
             "flowRef":"REF1",
             "delFlowRef":"D. REF1",
@@ -358,6 +368,8 @@ This endpoint deletes a specific order.
       "destination": "string",
       "exFactoryDate": "yyyy-MM-dd",
       "delMode": "string",
+      "gender": "string",
+      "sleeveType": "string",
       "orderQty": "int",
       "extra": "float",
       "shortShipPercent": "float",
@@ -419,6 +431,8 @@ This endpoint deletes a specific order.
 | color            | String | Required    | Style Color                                     |
 | destination      | String |             | Destination                                     |
 | delMode          | String |             | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
+| gender           | String |             | Gender                                          |
+| sleeveType       | String |             | Sleeve Type                                     |
 | exFactoryDate    | Date   |             | Delivery Date. Format: `yyyy-MM-dd`             |
 | orderQty         | Int    | Required    | Order Qty in this flow                          |
 | extra            | Float  |             | Allowed Extra percent                           |
