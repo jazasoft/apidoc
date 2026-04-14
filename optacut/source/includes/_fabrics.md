@@ -82,6 +82,7 @@ This endpoint creates a fabric.
 
 <pre class="center-column">
 {
+  "externalId": "F001",
   "itemCode": "IT-200",
   "itemDesc": "Test Description",
   "articleName": "ART-200",
@@ -105,6 +106,7 @@ This endpoint creates a fabric.
 ```json
 {
   "id": 2,
+  "externalId": "F001",
   "itemCode": "IT-200",
   "itemDesc": "Test Description",
   "articleName": "ART-200",
@@ -148,6 +150,7 @@ This endpoint updates an existing fabric.
 <pre class="center-column">
 {
   "id": 2,
+  "externalId": "F001",
   "itemCode": "IT-200-UPDATED",
   "itemDesc": "Test Description",
   "articleName": "ART-200",
@@ -171,6 +174,7 @@ This endpoint updates an existing fabric.
 ```json
 {
   "id": 2,
+  "externalId": "F001",
   "itemCode": "IT-200-UPDATED",
   "itemDesc": "Test Description",
   "articleName": "ART-200",
@@ -216,6 +220,7 @@ This endpoint deletes a specific fabric.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "itemCode": "string",
   "supplierItemCode": "string",
   "articleName": "string",
@@ -238,19 +243,20 @@ This is schema of Fabric entity
 
 **Fabric Table**
 
-| Field            | Type   | Constraints | Description                                                     |
-|------------------|--------|-------------|-----------------------------------------------------------------|
-| id               | Long   | Primary Key | Internal ID                                                     |
-| itemCode         | String | Required    | Item Code in ERP                                                |
-| supplierItemCode | String |             | Item Code from Supplier                                         |
-| articleName      | String |             | Article Name                                                    |
-| classification   | String |             | Fabric classification. Values: (`Woven`,`Non-Woven`, `Knitted`) |
-| fabricPatternId  | long   |             | Fabric Pattern Internal ID                                      |
-| fabricCategoryId | long   |             | Fabric Category Internal ID                                     |
-| repeatLength     | Float  |             | Repeat value length wise                                        |
-| repeatWidth      | Float  |             | Repeat value width wise                                         |
-| width            | Float  |             | Booking width                                                   |
-| gsm              | Float  |             | GSM value (Gram per square meter), if available                 |
+| Field            | Type   | Constraints                          | Description                                                     |
+|------------------|--------|--------------------------------------|-----------------------------------------------------------------|
+| id               | Number | Either ID or External ID is required | Internal ID                                                     |
+| externalId       | Number | Either ID or External ID is required | External ID                                                     |
+| itemCode         | String | Required                             | Item Code in ERP                                                |
+| supplierItemCode | String |                                      | Item Code from Supplier                                         |
+| articleName      | String |                                      | Article Name                                                    |
+| classification   | String |                                      | Fabric classification. Values: (`Woven`,`Non-Woven`, `Knitted`) |
+| fabricPatternId  | long   |                                      | Fabric Pattern Internal ID                                      |
+| fabricCategoryId | long   |                                      | Fabric Category Internal ID                                     |
+| repeatLength     | Float  |                                      | Repeat value length wise                                        |
+| repeatWidth      | Float  |                                      | Repeat value width wise                                         |
+| width            | Float  |                                      | Booking width                                                   |
+| gsm              | Float  |                                      | GSM value (Gram per square meter), if available                 |
 
 **Color Table**
 
