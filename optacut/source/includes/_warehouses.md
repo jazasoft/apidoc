@@ -66,6 +66,7 @@ This endpoint creates a warehouse.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "W001",
     "name": "Warehouse 1",
     "desc": "Test Description"
 }
@@ -76,6 +77,7 @@ This endpoint creates a warehouse.
 ```json
 {
   "id": 1000,
+  "externalId": "W001",
   "name": "Warehouse 1",
   "desc": "Test Description"
 }
@@ -103,11 +105,13 @@ This endpoint creates a warehouse.
 [
 {
     "id": 1000,
+    "externalId": "W001",
     "name": "Warehouse 1",
     "desc": "Test Description"
 },
 {
     "id": 1001,
+    "externalId": "W002",
     "name": "Warehouse 2",
     "desc": "Test Description"
 }
@@ -120,11 +124,13 @@ This endpoint creates a warehouse.
 [
   {
     "id": 1000,
+    "externalId": "W001",
     "name": "Warehouse 1",
     "desc": "Test Description"
   },
   {
     "id": 1001,
+    "externalId": "W002",
     "name": "Warehouse 2",
     "desc": "Test Description"
   }
@@ -157,6 +163,7 @@ This endpoint updates an existing warehouse.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "W001",
       "name": "Warehouse 1-Updated",
       "desc": "Test Description"
 }
@@ -167,6 +174,7 @@ This endpoint updates an existing warehouse.
 ```json
 {
   "id": 1,
+  "externalId": "W001",
   "name": "Warehouse 1-Updated",
   "desc": "Test Description"
 }
@@ -199,6 +207,7 @@ This endpoint deletes a specific warehouse.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "desc": "string"
 }
@@ -206,8 +215,9 @@ This endpoint deletes a specific warehouse.
 
 Schema of warehouse entity
 
-| Field | Type   | Constraints | Description               |
-|-------|--------|-------------|---------------------------|
-| id    | Number | Primary Key | Internal ID               |
-| name  | String | Required    | Name of Warehouse         |
-| desc  | Text   |             | description for Warehouse |
+| Field      | Type   | Constraints                            | Description               |
+|------------|--------|----------------------------------------|---------------------------|
+| id         | Number | Either ID or External ID is required   | Internal ID               |
+| externalId | Number | Either ID or External ID is required   | External ID               |
+| name       | String | Required                               | Name of Warehouse         |
+| desc       | Text   |                                        | description for Warehouse |
