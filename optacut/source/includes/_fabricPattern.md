@@ -65,6 +65,7 @@ This endpoint creates a fabricCategory.
 
 <pre class="center-column">
 {
+    "externalId": "FP001",
     "name": "Checks",
     "desc": "Test Description"
 }
@@ -75,6 +76,7 @@ This endpoint creates a fabricCategory.
 ```json
 {
   "id": 1,
+  "externalId": "FP001",
   "name": "Checks",
   "desc": "Test Description"
 }
@@ -105,6 +107,7 @@ This endpoint updates an existing fabricCategory.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "FP001",
       "name": "Checks-Updated",
       "desc": "Test Description"
 }
@@ -115,6 +118,7 @@ This endpoint updates an existing fabricCategory.
 ```json
 {
   "id": 1,
+  "externalId": "FP001",
   "name": "Checks-Updated",
   "desc": "Test Description"
 }
@@ -147,6 +151,7 @@ This endpoint deletes a specific fabricCategory.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "desc": "string"
 }
@@ -154,8 +159,9 @@ This endpoint deletes a specific fabricCategory.
 
 Schema of Fabric Pattern entity
 
-| Field | Type   | Constraints | Description                    |
-|-------|--------|-------------|--------------------------------|
-| id    | Number | Primary Key | Internal ID                    |
-| name  | String | Required    | Name of Fabric Pattern         |
-| desc  | Text   |             | description for Fabric Pattern |
+| Field      | Type   | Constraints                           | Description                    |
+|------------|--------|---------------------------------------|--------------------------------|
+| id         | Number | Either ID or External ID is required  | Internal ID                    |
+| externalId | Number | Either ID or External ID is required  | External ID                    |
+| name       | String | Required                              | Name of Fabric Pattern         |
+| desc       | Text   |                                       | description for Fabric Pattern |
