@@ -32,7 +32,8 @@ includes:
   - warehouses
   - fabricCategory
   - fabricPattern
-  - errors
+  - errorSchema
+  - errorCodes
 
 search: true
 ---
