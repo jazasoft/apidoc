@@ -68,6 +68,7 @@ This endpoint creates a product.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "P001",
     "name": "Shirt",
     "desc": "Test Description",
     "isSet": false,
@@ -80,6 +81,7 @@ This endpoint creates a product.
 ```json
 {
   "id": 1,
+  "externalId": "P001",
   "name": "Shirt",
   "isSet": false,
   "desc": "Test Description",
@@ -109,6 +111,7 @@ This endpoint creates a product.
 [
 {
     "id": 1000,
+    "externalId": "P001",
     "name": "Shirt",
     "desc": "Test Description",
     "isSet": false,
@@ -116,6 +119,7 @@ This endpoint creates a product.
 },
 {
     "id": 1001,
+    "externalId": "P002",
     "name": "Trouser",
     "desc": "Test Description",
     "isSet": false,
@@ -130,6 +134,7 @@ This endpoint creates a product.
 [
   {
     "id": 1000,
+    "externalId": "P001",
     "name": "Shirt",
     "desc": "Test Description",
     "isSet": false,
@@ -137,6 +142,7 @@ This endpoint creates a product.
   },
   {
     "id": 1001,
+    "externalId": "P002",
     "name": "Trouser",
     "desc": "Test Description",
     "isSet": false,
@@ -170,6 +176,7 @@ This endpoint updates an existing product.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "P001",
       "name": "Shirt-Updated",
       "isSet": false,
       "desc": "Test Description",
@@ -182,6 +189,7 @@ This endpoint updates an existing product.
 ```json
 {
   "id": 1,
+  "externalId": "P001",
   "name": "Shirt-Updated",
   "isSet": false,
   "desc": "Test Description",
@@ -216,6 +224,7 @@ This endpoint deletes a specific product.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "isSet": "boolean",
   "desc": "string",
@@ -225,9 +234,10 @@ This endpoint deletes a specific product.
 
 Schema of product entity
 
-| Field | Type    | Constraints | Description                        |
-|-------|---------|-------------|------------------------------------|
-| id    | Number  | Primary Key | Internal ID                        |
-| name  | String  | Required    | Name of Product                    |
-| isSet | Boolean |             | Whether product is set of products |
-| desc  | Text    |             | description for Product            |
+| Field      | Type     | Constraints                           | Description                        |
+|------------|----------|---------------------------------------|------------------------------------|
+| id         | Number   | Either ID or External ID is required  | Internal ID                        |
+| externalId | Number   | Either ID or External ID is required  | External ID                        |
+| name       | String   | Required                              | Name of Product                    |
+| isSet      | Boolean  |                                       | Whether product is set of products |
+| desc       | Text     |                                       | description for Product            |

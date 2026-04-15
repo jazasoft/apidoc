@@ -67,6 +67,7 @@ This endpoint creates a unit.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "U001",
     "name": "Unit A49",
     "unitId": "A49",
     "desc": "Test Description"
@@ -78,6 +79,7 @@ This endpoint creates a unit.
 ```json
 {
   "id": 1000,
+  "externalId": "U001",
   "name": "Unit A49",
   "unitId": "A49",
   "desc": "Test Description"
@@ -106,12 +108,14 @@ This endpoint creates a unit.
 [
 {
     "id": 1000,
+    "externalId": "U001",
     "name": "Unit A49",
     "unitId": "A49",
     "desc": "Test Description"
 },
 {
     "id": 1001,
+    "externalId": "U002",
     "name": "Unit A50",
     "unitId": "A49",
     "desc": "Test Description"
@@ -125,12 +129,14 @@ This endpoint creates a unit.
 [
   {
     "id": 1000,
+    "externalId": "U001",
     "name": "Unit A49",
     "unitId": "A49",
     "desc": "Test Description"
   },
   {
     "id": 1001,
+    "externalId": "U002",
     "name": "Unit A50",
     "unitId": "A49",
     "desc": "Test Description"
@@ -163,6 +169,7 @@ This endpoint updates an existing unit.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "U001",
       "name": "Unit A49-Updated",
       "unitId": "A49-Updated",
       "desc": "Test Description"
@@ -174,6 +181,7 @@ This endpoint updates an existing unit.
 ```json
 {
   "id": 1,
+  "externalId": "U001",
   "name": "A49-Updated",
   "unitId": "A49",
   "desc": "Test Description"
@@ -207,6 +215,7 @@ This endpoint deletes a specific unit.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "unitId": "string",
   "desc": "string"
@@ -215,9 +224,10 @@ This endpoint deletes a specific unit.
 
 Schema of unit entity
 
-| Field  | Type   | Constraints | Description          |
-|--------|--------|-------------|----------------------|
-| id     | Number | Primary Key | Internal ID          |
-| name   | String | Required    | Name of Unit         |
-| unitId | String | Required    | Unit Id              |
-| desc   | Text   |             | description for Unit |
+| Field      | Type   | Constraints                             | Description          |
+|------------|--------|-----------------------------------------|----------------------|
+| id         | Number | Either ID or External ID is required    | Internal ID          |
+| externalId | Number | Either ID or External ID is required    | External ID          |
+| name       | String | Required                                | Name of Unit         |
+| unitId     | String | Required                                | Unit Id              |
+| desc       | Text   |                                         | description for Unit |

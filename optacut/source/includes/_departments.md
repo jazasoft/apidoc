@@ -66,6 +66,7 @@ This endpoint creates a department.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "D001",
     "name": "Sewing",
     "desc": "Test Description"
 }
@@ -76,6 +77,7 @@ This endpoint creates a department.
 ```json
 {
   "id": 1000,
+  "externalId": "D001",
   "name": "Sewing",
   "desc": "Test Description"
 }
@@ -103,11 +105,13 @@ This endpoint creates a department.
 [
 {
     "id": 1000,
+    "externalId": "D001",
     "name": "Sewing",
     "desc": "Test Description"
 },
 {
     "id": 1001,
+    "externalId": "D002",
     "name": "Finishing",
     "desc": "Test Description"
 }
@@ -120,11 +124,13 @@ This endpoint creates a department.
 [
   {
     "id": 1000,
+    "externalId": "D001",
     "name": "Sewing",
     "desc": "Test Description"
   },
   {
     "id": 1001,
+    "externalId": "D002",
     "name": "Finishing",
     "desc": "Test Description"
   }
@@ -156,6 +162,7 @@ This endpoint updates an existing department.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "D001",
       "name": "Sewing-Updated",
       "desc": "Test Description"
 }
@@ -166,6 +173,7 @@ This endpoint updates an existing department.
 ```json
 {
   "id": 1,
+  "externalId": "D001",
   "name": "Sewing-Updated",
   "desc": "Test Description"
 }
@@ -198,6 +206,7 @@ This endpoint deletes a specific department.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "desc": "string"
 }
@@ -205,8 +214,9 @@ This endpoint deletes a specific department.
 
 Schema of department entity
 
-| Field | Type   | Constraints | Description                |
-|-------|--------|-------------|----------------------------|
-| id    | Number | Primary Key | Internal ID                |
-| name  | String | Required    | Name of Department         |
-| desc  | Text   |             | description for Department |
+| Field      | Type      | Constraints                            | Description                |
+|------------|-----------|----------------------------------------|----------------------------|
+| id         | Number    | Either ID or External ID is required   | Internal ID                |
+| externalId | Number    | Either ID or External ID is required   | External ID                |
+| name       | String    | Required                               | Name of Department         |
+| desc       | Text      |                                        | description for Department |

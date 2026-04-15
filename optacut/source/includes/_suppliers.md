@@ -66,6 +66,7 @@ This endpoint creates a supplier.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "S001", 
     "name": "Monti",
     "desc": "Test Description"
 }
@@ -76,6 +77,7 @@ This endpoint creates a supplier.
 ```json
 {
   "id": 1000,
+  "externalId": "S001",
   "name": "Monti",
   "desc": "Test Description"
 }
@@ -103,11 +105,13 @@ This endpoint creates a supplier.
 [
 {
     "id": 1000,
+    "externalId": "S001", 
     "name": "Monti",
     "desc": "Test Description"
 },
 {
     "id": 1001,
+    "externalId": "S002", 
     "name": "Arvind",
     "desc": "Test Description"
 }
@@ -120,11 +124,13 @@ This endpoint creates a supplier.
 [
   {
     "id": 1000,
+    "externalId": "S001",
     "name": "Monti",
     "desc": "Test Description"
   },
   {
     "id": 1001,
+    "externalId": "S002",
     "name": "Arvind",
     "desc": "Test Description"
   }
@@ -156,6 +162,7 @@ This endpoint updates an existing supplier.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "S001", 
       "name": "Monti-Updated",
       "desc": "Test Description"
 }
@@ -166,6 +173,7 @@ This endpoint updates an existing supplier.
 ```json
 {
   "id": 1,
+  "externalId": "S001",
   "name": "Monti-Updated",
   "desc": "Test Description"
 }
@@ -198,6 +206,7 @@ This endpoint deletes a specific supplier.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "desc": "string"
 }
@@ -205,8 +214,9 @@ This endpoint deletes a specific supplier.
 
 Schema of Supplier entity
 
-| Field | Type   | Constraints | Description              |
-|-------|--------|-------------|--------------------------|
-| id    | Number | Primary Key | Internal ID              |
-| name  | String | Required    | Name of Supplier         |
-| desc  | Text   |             | description for Supplier |
+| Field      | Type   | Constraints                            | Description              |
+|------------|--------|----------------------------------------|--------------------------|
+| id         | Number | Either ID or External ID is required   | Internal ID              |
+| externalId | Number | Either ID or External ID is required   | External ID              |
+| name       | String | Required                               | Name of Supplier         |
+| desc       | Text   |                                        | description for Supplier |

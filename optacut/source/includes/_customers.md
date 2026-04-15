@@ -67,6 +67,7 @@ This endpoint creates a customer.
 <pre class="center-column">
 {
     "id": 1000,
+    "externalId": "C001",
     "name": "GANT",
     "code": "GNT",
     "desc": "Test Description"
@@ -78,6 +79,7 @@ This endpoint creates a customer.
 ```json
 {
   "id": 1000,
+  "externalId": "C001",
   "name": "GANT",
   "code": "GNT",
   "desc": "Test Description"
@@ -107,12 +109,14 @@ This endpoint creates a customer.
 [
 {
     "id": 1000,
+    "externalId": "C001",
     "name": "GANT",
     "code": "GNT",
     "desc": "Test Description"
 },
 {
     "id": 1001,
+    "externalId": "C002",
     "name": "Dressmann",
     "code": "DM",
     "desc": "Test Description2"
@@ -126,12 +130,14 @@ This endpoint creates a customer.
 [
   {
     "id": 4000,
+    "externalId": "C001",
     "name": "GANT",
     "code": "GNT",
     "desc": "Test Description"
   },
   {
     "id": 4000,
+    "externalId": "C002",
     "name": "Dressmann",
     "code": "DM",
     "desc": "Test Description2"
@@ -164,6 +170,7 @@ This endpoint updates an existing customer.
 <pre class="center-column">
 {
       "id": 1,
+      "externalId": "C001",
       "name": "GANT-Updated",
       "code": "GNT",
       "desc": "Test Description"
@@ -175,6 +182,7 @@ This endpoint updates an existing customer.
 ```json
 {
   "id": 1,
+  "externalId": "C001",
   "name": "GANT-Updated",
   "code": "GNT",
   "desc": "Test Description"
@@ -208,6 +216,7 @@ This endpoint deletes a specific customer.
 ```json
 {
   "id": "long",
+  "externalId": "string",
   "name": "string",
   "code": "string",
   "desc": "string"
@@ -216,9 +225,10 @@ This endpoint deletes a specific customer.
 
 Schema of Customer entity
 
-| Field | Type   | Constraints | Description              |
-|-------|--------|-------------|--------------------------|
-| id    | Number | Primary Key | Internal ID              |
-| name  | String | Required    | Name of Customer         |
-| code  | String |             | Short code for Customer  |
-| desc  | Text   |             | description for Customer |
+| Field      | Type      | Constraints                           | Description              |
+|------------|-----------|---------------------------------------|--------------------------|
+| id         | Number    | Either ID or External ID is required  | Internal ID              |
+| externalId | Number    | Either ID or External ID is required  | External ID              |
+| name       | String    | Required                              | Name of Customer         |
+| code       | String    |                                       | Short code for Customer  |
+| desc       | Text      |                                       | description for Customer |
