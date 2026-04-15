@@ -256,6 +256,20 @@ Used for factory production-related APIs with similar nested structure.
         "message": ["Product Id is required"],
         "currValue": null,
         "rejectedValue": null
+      },
+      {
+        "serialNo": 2,
+        "field": "sizeBreakupList",
+        "message": ["There are errors for size breakup."],
+        "errors": [
+          {
+            "serialNo": 1,
+            "field": "size",
+            "message": ["Size is required"],
+            "currValue": null,
+            "rejectedValue": null
+          }
+        ]
       }
     ]
   }
