@@ -14,7 +14,10 @@ This is the base error response returned for all API failures.
 {
   "status": 400,
   "code": "BAD_REQUEST",
-  "message": "Invalid input provided"
+  "message": "user friendly message",
+  "devMessage": "developer message",
+  "moreInfo": "more information",
+  "body": "error body"
 }
 ```
 
@@ -24,7 +27,10 @@ This is the base error response returned for all API failures.
 {
   "status": 400,
   "code": "BAD_REQUEST",
-  "message": "id or externalId is required for updating Department"
+  "message": "id or externalId is required for updating Department",
+  "devMessage": "",
+  "moreInfo": "",
+  "body": ""
 }
 ```
 
