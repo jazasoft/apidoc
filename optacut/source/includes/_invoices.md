@@ -22,12 +22,14 @@ This endpoint creates a invoice.
 {
   "externalId": "100",
   "supplierId": 1,
+  "extSupplierId": "S001",
   "invoiceNo": "INV-100",
   "erpInvoiceNo": "ERP INVOICE-100",
   "fabricItemList": [
     {
       "externalId": "200",
       "fabricId": 1,
+      "extFabricId": "F001",
       "color": "Blue",
       "colorCode": null,
       "colorShade": "Light",
@@ -102,6 +104,7 @@ This endpoint creates a invoice.
   "id": 98,
   "createdDate": 1696836107887,
   "supplierId": 1,
+  "extSupplierId": "S001",
   "invoiceNo": "INV-100",
   "erpInvoiceNo": "ERP INVOICE-100",
   "fabricItemList": [
@@ -110,6 +113,7 @@ This endpoint creates a invoice.
       "id": 126,
       "warehouse": "wh-central",
       "fabricId": 1,
+      "extFabricId": "F001",
       "color": "Blue",
       "colorShade": "Light",
       "grn": "GRN#100",
@@ -254,12 +258,14 @@ This endpoint created association of this fabric item to different styles.
 {
   "externalId": "string",
   "supplierId": "long",
+  "extSupplierId": "string",
   "invoiceNo": "string",
   "erpInvoiceNo": "string",
   "fabricItemList": [
     {
       "externalId": "string",
       "fabricId": "long",
+      "extFabricId": "string",
       "color": "string",
       "colorShade": "string",
       "orderId": "long",
@@ -301,45 +307,47 @@ Schema of invoice entity
 
 **Invoice Table**
 
-| Field        | Type   | Constraints | Description                        |
-|--------------|--------|-------------|------------------------------------|
-| id           | Number | Primary Key | Internal ID                        |
-| externalId   | String |             | External ID                        |
-| supplierId   | Long   | Required    | Supplier Internal ID               |
-| invoiceNo    | String | Required    | Invoice number from Supplier       |
-| invoiceDate  | Date   | Required    | Invoice Date. Format: `yyyy-MM-dd` |
-| erpInvoiceNo | String |             | Invoice number in ERP              |
+| Field         | Type   | Constraints                                      | Description                        |
+|---------------|--------|--------------------------------------------------|------------------------------------|
+| id            | Number | Primary Key                                      | Internal ID                        |
+| externalId    | String |                                                  | External ID                        |
+| supplierId    | Long   | Required if External Supplier ID is not present  | Internal ID of Supplier            |
+| extSupplierId | String | Required if Supplier ID is not present           | External ID of Supplier            |
+| invoiceNo     | String | Required                                         | Invoice number from Supplier       |
+| invoiceDate   | Date   | Required                                         | Invoice Date. Format: `yyyy-MM-dd` |
+| erpInvoiceNo  | String |                                                  | Invoice number in ERP              |
 
 **Fabric Item Table**
 
-| Field                 | Type    | Constraints | Description                                                                           |
-|-----------------------|---------|-------------|---------------------------------------------------------------------------------------|
-| id                    | Number  | Primary Key | Internal ID                                                                           |
-| externalId            | String  |             | External ID                                                                           |
-| serial                | Int     |             | Sequence of Item                                                                      |
-| fabricId              | Long    | Required    | Fabric Internal ID                                                                    |
-| color                 | String  | Required    | Fabric Color                                                                          |
-| colorCode             | String  |             | Fabric Color Code                                                                     |
-| colorShade            | String  |             | Fabric Color Shade (e.g. Light, Dark)                                                 |
-| orderId               | Long    |             | Internal Order ID                                                                     |
-| externalOrderIds      | String  |             | External Order IDs                                                                    |
-| fpo                   | String  |             | Fabric Purchase Order Number                                                          |
-| orderQty              | Float   | Required    | Fabric order qty                                                                      |
-| orderingWidth         | Float   | Required    | Ordering/Booking Width                                                                |
-| orderingGsm           | Float   |             | Ordering/Booking value GSM                                                            |
-| orderingCsv           | String  |             | Ordering/Booking value CSV. Values - (`Yes`, `No`, `Grade 3`, `Grade 3-4`, `Grade 4`) |
-| orderingWarpShrinkage | Float   |             | Ordering/Booking value Warp Shrinkage                                                 |
-| orderingWeftShrinkage | Float   |             | Ordering/Booking value Weft Shrinkage                                                 |
-| nominatedSupplier     | Boolean |             | Nominated Supplier or not?.                                                           |
-| rollForm              | String  |             | Roll can come in tube form or open form.                                              |
-| uomWidth              | string  |             | Unit of measurement for width. Values - (`centimeter`, `inch`)                        |
-| uomLength             | string  |             | Unit of measurement for Length. Values - (`meter`, `yard`, `kilogram`)                |
-| invoiceQty            | Float   | Required    | Invoice Qty                                                                           |
-| grn                   | String  | Required    | GRN Number                                                                            |
-| grnQty                | Float   |             | GRN Qty  (Derived from packing list)                                                  |
-| grnDate               | Date    |             | GRN Date.  Format: `yyyy-MM-dd`                                                       |
-| warehouse             | String  |             | Warehouse where GRN is done                                                           |
-| blanketQty            | Float   |             | Blanket qty issued per roll for Shade/Shrinkage Report                                |
+| Field                 | Type    | Constraints                                    | Description                                                                           |
+|-----------------------|---------|------------------------------------------------|---------------------------------------------------------------------------------------|
+| id                    | Number  | Primary Key                                    | Internal ID                                                                           |
+| externalId            | String  |                                                | External ID                                                                           |
+| serial                | Int     |                                                | Sequence of Item                                                                      |
+| fabricId              | Long    | Required if External Fabric ID is not present  | Internal ID of Fabric                                                                 |
+| extFabricId           | String  | Required if Fabric ID is not present           | External ID of Fabric                                                                 |
+| color                 | String  | Required                                       | Fabric Color                                                                          |
+| colorCode             | String  |                                                | Fabric Color Code                                                                     |
+| colorShade            | String  |                                                | Fabric Color Shade (e.g. Light, Dark)                                                 |
+| orderId               | Long    |                                                | Internal Order ID                                                                     |
+| externalOrderIds      | String  |                                                | External Order IDs                                                                    |
+| fpo                   | String  |                                                | Fabric Purchase Order Number                                                          |
+| orderQty              | Float   | Required                                       | Fabric order qty                                                                      |
+| orderingWidth         | Float   | Required                                       | Ordering/Booking Width                                                                |
+| orderingGsm           | Float   |                                                | Ordering/Booking value GSM                                                            |
+| orderingCsv           | String  |                                                | Ordering/Booking value CSV. Values - (`Yes`, `No`, `Grade 3`, `Grade 3-4`, `Grade 4`) |
+| orderingWarpShrinkage | Float   |                                                | Ordering/Booking value Warp Shrinkage                                                 |
+| orderingWeftShrinkage | Float   |                                                | Ordering/Booking value Weft Shrinkage                                                 |
+| nominatedSupplier     | Boolean |                                                | Nominated Supplier or not?.                                                           |
+| rollForm              | String  |                                                | Roll can come in tube form or open form.                                              |
+| uomWidth              | string  |                                                | Unit of measurement for width. Values - (`centimeter`, `inch`)                        |
+| uomLength             | string  |                                                | Unit of measurement for Length. Values - (`meter`, `yard`, `kilogram`)                |
+| invoiceQty            | Float   | Required                                       | Invoice Qty                                                                           |
+| grn                   | String  | Required                                       | GRN Number                                                                            |
+| grnQty                | Float   |                                                | GRN Qty  (Derived from packing list)                                                  |
+| grnDate               | Date    |                                                | GRN Date.  Format: `yyyy-MM-dd`                                                       |
+| warehouse             | String  |                                                | Warehouse where GRN is done                                                           |
+| blanketQty            | Float   |                                                | Blanket qty issued per roll for Shade/Shrinkage Report                                |
 
 **SupplierRoll Table**
 
