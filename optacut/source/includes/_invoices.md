@@ -219,6 +219,7 @@ This endpoint created association of this fabric item to different styles.
   {
     "orderId": 10,
     "productId": 2,
+    "extProductId": "P001",
     "style": "A6",
     "color": "Black",
     "partName": "Shell",
@@ -242,6 +243,7 @@ This endpoint created association of this fabric item to different styles.
     "orderId": 619,
     "flowInfoId": 1985,
     "productId": 2,
+    "extProductId": "P001",
     "style": "A6",
     "color": "Black",
     "partId": 121,
