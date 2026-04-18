@@ -266,6 +266,7 @@ but will be removed in the future. Please, update URL to avoid breaking API
 <pre class="center-column">
 {
   "productId": 1,
+  "extProductId": "P001",
   "style": "Black",
   "styleColor": "A6",
   "part": "Shell",
@@ -319,6 +320,7 @@ but will be removed in the future. Please, update URL to avoid breaking API
 ```json
 {
   "productId": "long",
+  "extProductId": "string",
   "style": "string",
   "styleColor": "string",
   "part": "string",
@@ -353,13 +355,14 @@ but will be removed in the future. Please, update URL to avoid breaking API
 
 **FlowInfo Table**
 
-| Field      | Type   | Constraints | Description                                                              |
-|------------|--------|-------------|--------------------------------------------------------------------------|
-| productId  | Long   | Required    | Product Id which was sent in FlowInfo while creating order               |
-| style      | String | Required    | Style which was sent in FlowInfo while creating order                    |
-| styleColor | String | Required    | Style/FG Color which was sent in FlowInfo while creating order           |
-| part       | Int    | Required    | PartName which was sent in Fabric BOM details while creating order       |
-| placement  | Int    | Required    | Part Placement which was sent in Fabric BOM details while creating order |
+| Field        | Type   | Constraints                                      | Description                                                              |
+|--------------|--------|--------------------------------------------------|--------------------------------------------------------------------------|
+| productId    | Long   | Required if External Product ID is not present   | Product Id which was sent in FlowInfo while creating order               |
+| extProductId | Long   | Required if Product ID is not present            | External Product Id which was sent in FlowInfo while creating order      |
+| style        | String | Required                                         | Style which was sent in FlowInfo while creating order                    |
+| styleColor   | String | Required                                         | Style/FG Color which was sent in FlowInfo while creating order           |
+| part         | Int    | Required                                         | PartName which was sent in Fabric BOM details while creating order       |
+| placement    | Int    | Required                                         | Part Placement which was sent in Fabric BOM details while creating order |
 
 **Fabric Item Table**
 
@@ -478,6 +481,7 @@ Re-QC API accepts on of two Payload Structure
     {
       "externalId": "200",
       "fabricId": 1,
+      "extFabricId": "F001",
       "color": "Blue",
       "colorCode": "Blue,
       "colorShade": null,
@@ -524,6 +528,7 @@ Re-QC API accepts on of two Payload Structure
     {
       "externalId": "string",
       "fabricId": "long",
+      "extFabricId": "string",
       "color": "string",
       "colorCode": "string",
       "colorShade": "string",
@@ -549,15 +554,16 @@ Schema of invoice entity
 
 **Fabric Item Table**
 
-| Field      | Type   | Constraints | Description                           |
-|------------|--------|-------------|---------------------------------------|
-| externalId | String | Required    | RE-QC Transaction Number              |
-| fabricId   | Long   | Required    | Fabric Internal ID                    |
-| color      | String | Required    | Fabric Color                          |
-| colorCode  | String | Required    | Fabric Color Code                     |
-| colorShade | String |             | Fabric Color Shade (e.g. Light, Dark) |
-| fpo        | String | Required    | Fabric Purchase Order Number          |
-| grn        | String | Required    | GRN Number                            |
+| Field       | Type   | Constraints                                     | Description                           |
+|-------------|--------|-------------------------------------------------|---------------------------------------|
+| externalId  | String | Required                                        | RE-QC Transaction Number              |
+| fabricId    | Long   | Required if External Fabric ID is not present   | Fabric Internal ID                    |
+| extFabricId | Long   | Required if Fabric ID is not present            | Fabric External ID                    |
+| color       | String | Required                                        | Fabric Color                          |
+| colorCode   | String | Required                                        | Fabric Color Code                     |
+| colorShade  | String |                                                 | Fabric Color Shade (e.g. Light, Dark) |
+| fpo         | String | Required                                        | Fabric Purchase Order Number          |
+| grn         | String | Required                                        | GRN Number                            |
 
 **SupplierRoll Table**
 
