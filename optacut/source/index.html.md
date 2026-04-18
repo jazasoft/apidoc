@@ -33,6 +33,7 @@ includes:
   - fabricCategory
   - fabricPattern
   - errorSchema
+  - masterOrderFpoErrorSchema
   - errorCodes
 
 search: true
