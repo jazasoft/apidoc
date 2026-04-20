@@ -143,13 +143,16 @@ This endpoint creates an order.
     "poRef": "J/102",
     "customerPoRef": "B/100",
     "customerId": 2,
+    "extCustomerId": "C001",
     "seasonId": 1,
+    "extSeasonId": "S001",
     "desc": "Test description",
     "flowInfoList": [
         {
             "externalId": "2000",
             "serialNo": 1,
             "productId": 1,
+            "extProductId": "P001",
             "style": "A6",
             "styleNo": "A1000",
             "fit":"Slim Fit",
@@ -183,6 +186,7 @@ This endpoint creates an order.
             "externalId": "2001",
             "serialNo": 1,
             "productId": 1,
+            "extProductId": "P001",
             "style": "A6",
             "styleNo": "A1000",
             "fit":"Slim Fit",
@@ -244,13 +248,16 @@ This endpoint updates an existing order.
     "poRef": "J/102",
     "customerPoRef": "B/100",
     "customerId": 2,
+    "extCustomerId": "C001",
     "seasonId": 1,
+    "extSeasonId": "S001",
     "desc": "Test description",
     "flowInfoList": [
         {
             "externalId": "2000",
             "serialNo": 1,
             "productId": 1,
+            "extProductId": "P001",
             "style": "A6",
             "styleNo": "A1000",
             "fit":"Slim Fit",
@@ -284,6 +291,7 @@ This endpoint updates an existing order.
             "externalId": "2001",
             "serialNo": 1,
             "productId": 1,
+            "extProductId": "P001",
             "style": "A6",
             "styleNo": "A1000",
             "fit":"Slim Fit",
@@ -346,7 +354,9 @@ This endpoint deletes a specific order.
   "id": "long",
   "externalId": "string",
   "customerId": "long",
+  "extCustomerId": "string",
   "seasonId": "long",
+  "extSeasonId": "string",
   "poRef": "string",
   "customerPoRef": "string",
   "desc": "string",
@@ -360,6 +370,7 @@ This endpoint deletes a specific order.
       "customerFlowRef": "string",
       "serialNo": "int",
       "productId": "long",
+      "extProductId": "string",
       "style": "string",
       "styleNo": "string",
       "fit": "string",
@@ -410,33 +421,36 @@ This endpoint deletes a specific order.
 | poRef         | String | Required    | Purchase Order Reference          |
 | customerPoRef | String |             | Customer Purchase Order Reference |
 | customerId    | Long   |             | Internal ID of Customer           |
+| extCustomerId | String |             | External ID of Customer           |
 | seasonId      | Long   |             | Internal ID of Season             |
+| extSeasonId   | String |             | External ID of Season             |
 | desc          | Text   |             | description for Order             |
 
 **FlowInfo Table**
 
-| Field            | Type   | Constraints | Description                                     |
-|------------------|--------|-------------|-------------------------------------------------|
-| id               | Long   | Primary Key | Internal ID                                     |
-| externalId       | String | Unique      | External ID                                     |
-| serialNo         | Long   |             | Sequence                                        |
-| flowRef          | String |             | ERP Reference number at Color Level             |
-| delFlowRef       | String |             | Customer+ERP Reference number at Delivery Level |
-| customerFlowRef  | String |             | Customer Reference  number at Color Level       |
-| productId        | Long   | Required    | Internal ID of Product                          |
-| style            | String | Required    | Style Name                                      |
-| styleNo          | String |             | Style Long                                      |
-| fit              | String |             | Fit                                             |
-| inseam           | String |             | Inseam                                          |
-| color            | String | Required    | Style Color                                     |
-| destination      | String |             | Destination                                     |
-| delMode          | String |             | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
-| gender           | String |             | Gender                                          |
-| sleeveType       | String |             | Sleeve Type                                     |
-| exFactoryDate    | Date   |             | Delivery Date. Format: `yyyy-MM-dd`             |
-| orderQty         | Int    | Required    | Order Qty in this flow                          |
-| extra            | Float  |             | Allowed Extra percent                           |
-| shortShipPercent | Float  |             | Short Shipment Tolerance percent                |
+| Field            | Type   | Constraints                                    | Description                                     |
+|------------------|--------|------------------------------------------------|-------------------------------------------------|
+| id               | Long   | Primary Key                                    | Internal ID                                     |
+| externalId       | String | Unique                                         | External ID                                     |
+| serialNo         | Long   |                                                | Sequence                                        |
+| flowRef          | String |                                                | ERP Reference number at Color Level             |
+| delFlowRef       | String |                                                | Customer+ERP Reference number at Delivery Level |
+| customerFlowRef  | String |                                                | Customer Reference  number at Color Level       |
+| productId        | Long   | Required if External Product ID is not present | Internal ID of Product                          |
+| extProductId     | String | Required if Product ID is not present          | Internal ID of Product                          |
+| style            | String | Required                                       | Style Name                                      |
+| styleNo          | String |                                                | Style Long                                      |
+| fit              | String |                                                | Fit                                             |
+| inseam           | String |                                                | Inseam                                          |
+| color            | String | Required                                       | Style Color                                     |
+| destination      | String |                                                | Destination                                     |
+| delMode          | String |                                                | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
+| gender           | String |                                                | Gender                                          |
+| sleeveType       | String |                                                | Sleeve Type                                     |
+| exFactoryDate    | Date   |                                                | Delivery Date. Format: `yyyy-MM-dd`             |
+| orderQty         | Int    | Required                                       | Order Qty in this flow                          |
+| extra            | Float  |                                                | Allowed Extra percent                           |
+| shortShipPercent | Float  |                                                | Short Shipment Tolerance percent                |
 
 **Part Table**
 

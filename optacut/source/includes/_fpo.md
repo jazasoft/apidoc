@@ -33,6 +33,7 @@ This endpoint creates a factory production order.
     {
       "externalId": "2000",
       "productId": 1,
+      "extProductId": "P001",
       "style": "A6",
       "color": "Black",
       "inseam": "32Inch",
@@ -60,6 +61,7 @@ This endpoint creates a factory production order.
     {
       "externalId": "2001",
       "productId": 1,
+      "extProductId": "P001",
       "style": "A6",
       "color": "Black",
       "inseam": "32Inch",
@@ -121,6 +123,7 @@ This endpoint updates a factory production order.
     {
       "externalId": "2000",
       "productId": 1,
+      "extProductId": "P001",
       "style": "A6",
       "color": "Black",
       "inseam": "32Inch",
@@ -148,6 +151,7 @@ This endpoint updates a factory production order.
     {
       "externalId": "2001",
       "productId": 1,
+      "extProductId": "P001",
       "style": "A6",
       "color": "Black",
       "inseam": "32Inch",
@@ -210,6 +214,7 @@ This endpoint creates a factory production order.
     {
       "externalId": "string",
       "productId": "long",
+      "extProductId": "string",
       "style": "string",
       "color": "string",
       "inseam": "string",
@@ -251,21 +256,22 @@ This endpoint creates a factory production order.
 
 **FlowInfo Table**
 
-| Field           | Type   | Constraints | Description                                     |
-|-----------------|--------|-------------|-------------------------------------------------|
-| externalId      | String | Unique      | External ID                                     |
-| flowRef         | String |             | ERP Reference number at Color Level             |
-| delFlowRef      | String |             | Customer+ERP Reference number at Delivery Level |
-| customerFlowRef | String |             | Customer Reference  number at Color Level       |
-| productId       | Long   | Required    | Internal ID of Product                          |
-| style           | String | Required    | Style Name                                      |
-| color           | String | Required    | Style Color                                     |
-| inseam          | String |             | Inseam                                          |
-| destination     | String |             | Destination                                     |
-| delMode         | String |             | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
-| deliveryDate    | Date   |             | Delivery Date. Format: `yyyy-MM-dd`             |
-| orderQty        | Int    | Required    | Order Qty in this flow                          |
-| extra           | Float  |             | Allowed Extra percent                           |
+| Field           | Type   | Constraints                                     | Description                                     |
+|-----------------|--------|-------------------------------------------------|-------------------------------------------------|
+| externalId      | String | Unique                                          | External ID                                     |
+| flowRef         | String |                                                 | ERP Reference number at Color Level             |
+| delFlowRef      | String |                                                 | Customer+ERP Reference number at Delivery Level |
+| customerFlowRef | String |                                                 | Customer Reference  number at Color Level       |
+| productId       | Long   | Required if External Product ID is not present  | Internal ID of Product                          |
+| extProductId    | String | Required if Product ID is not present           | Internal ID of Product                          |
+| style           | String | Required                                        | Style Name                                      |
+| color           | String | Required                                        | Style Color                                     |
+| inseam          | String |                                                 | Inseam                                          |
+| destination     | String |                                                 | Destination                                     |
+| delMode         | String |                                                 | Delivery Mode. Values: (`Air`, `Sea`, `Road`)   |
+| deliveryDate    | Date   |                                                 | Delivery Date. Format: `yyyy-MM-dd`             |
+| orderQty        | Int    | Required                                        | Order Qty in this flow                          |
+| extra           | Float  |                                                 | Allowed Extra percent                           |
 
 **Size Breakup Table**
 
