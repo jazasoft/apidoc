@@ -1,14 +1,17 @@
-# Error Schema Documentation
+# Error Schema
 
-This document defines the standard error response structures used across different APIs.
+This document defines the standardized error response formats used across all APIs to ensure consistency, clarity, and ease of debugging.
 
----
+We provide two types of error responses based on the nature of the API operation:
 
-# 🔹 1. Generic Error Response (Common for All APIs)
+ 1. <b>Generic Error Response</b> - Used for standard API failures.
+ 2. <b>Field Error Response</b> - Used to indicate specific errors at field level. This error reponse can be nested and hierarchy is as per payload hierarchy.  
+
+## Generic Error Response (Common for All APIs)
 
 This is the base error response returned for all API failures.
 
-### Structure
+> Structure
 
 ```json
 {
@@ -21,7 +24,7 @@ This is the base error response returned for all API failures.
 }
 ```
 
-### Sample Response
+> Sample Response
 
 ```json
 {
@@ -36,19 +39,20 @@ This is the base error response returned for all API failures.
 
 ### Fields
 
-| Field    | Type     | Description                     |
-|----------|----------|---------------------------------|
-| status   | Integer  | HTTP status code                |
-| code     | String   | Application-specific error code |
-| message  | String   | Error description               |
+| Field      | Type     | Description                          |
+|------------|----------|--------------------------------------|
+| status     | Integer  | HTTP status code                     |
+| code       | String   | Application-specific error code      |
+| message    | String   | User Friendly Error description      |
+| devMessage | String   | Developer Friendly Error description |
+| moreInfo   | String   | More Information regarding error     |
+| body       | String   | Error Body                           |
 
----
+## Field Error Response
 
-# 🔹 2. Generic Batch API Error Response
+Field level error response
 
-Used for bulk APIs where multiple records can fail.
-
-### Structure
+> Structure
 
 ```json
 [
@@ -56,240 +60,62 @@ Used for bulk APIs where multiple records can fail.
     "serialNo": 1,
     "field": "field1",
     "message": ["Error message"],
+    "currValue": "curr_value",
     "rejectedValue": "invalid_value",
-    "errors": null
+    "errors": [
+      {
+        "serialNo": 1,
+        "field": "nestedField",
+        "message": ["Error message"],
+        "currValue": "curr_value",
+        "rejectedValue": "invalid_value"
+      }
+    ]
   }
 ]
 ```
 
-### Sample Response
+> Sample Response
 
 ```json
 [
   {
     "serialNo": 1,
-    "field": "name",
-    "message": ["Season name is required"],
+    "field": "poRef",
+    "message": ["PO Reference is required"],
+    "currValue": null,
     "rejectedValue": null,
     "errors": null
   },
   {
     "serialNo": 2,
-    "field": "name",
-    "message": ["Season name is required"],
-    "rejectedValue": -5,
-    "errors": null
-  }
-]
-```
-
-### Key Points
-
-* Each object represents one failed record
-* `serialNo` maps to input index
-* Used in bulk upload APIs
-
----
-
-# 🔹 3. Master Data Error Schema
-
-(Customer, Season, Product, Supplier, etc.)
-
-Used for simple entity validations.
-
-### Structure
-
-```json
-[
-  {
-    "serialNo": null,
-    "field": "field1",
-    "message": ["Error Message"],
-    "rejectedValue": null,
-    "errors": null
-  }
-]
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "serialNo": null,
-    "field": "name",
-    "message": ["Customer name is required"],
-    "rejectedValue": "",
-    "errors": null
-  }
-]
-```
-
-### Key Points
-
-* Flat structure (no nesting)
-* Used for simple CRUD validations
-* Lightweight and easy to parse
-
----
-
-# 🔹 4. Sales Order / Orders Error Schema
-
-Used for deeply nested validation errors (e.g., flowInfoList, partList, sizeBreakupList).
-
-### Structure
-
-```json
-[
-  {
-    "serialNo": 1,
-    "field": "field1",
-    "message": ["Error1", "Error2"],
-    "currValue": null,
-    "rejectedValue": null,
-    "errors": [
-      {
-        "serialNo": 1,
-        "field": "field1",
-        "message": ["Error1", "Error2"],
-        "currValue": null,
-        "rejectedValue": null,
-        "errors": [
-          {
-            "serialNo": 1,
-            "field": "field1",
-            "message": ["Error1", "Error2"],
-            "currValue": null,
-            "rejectedValue": null
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "serialNo": 1,
     "field": "flowInfoList",
-    "message": ["FlowInfo has errors."],
+    "message": ["There are errors in FlowInfo"],
     "currValue": null,
     "rejectedValue": null,
     "errors": [
       {
         "serialNo": 1,
-        "field": "partList",
-        "message": ["Part list has errors"],
+        "field": "style",
+        "message": ["Style is required"],
         "currValue": null,
         "rejectedValue": null,
-        "errors": [
-          {
-            "serialNo": 1,
-            "field": "bomCu",
-            "message": ["BOM consumption must be greater than 0"],
-            "currValue": null,
-            "rejectedValue": -1
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-### Key Points
-
-* Supports multi-level nested validation
-* `errors` field allows recursive child errors
-* Useful for hierarchical payloads
-
----
-
-# 🔹 5. Factory Production Order Error Schema
-
-Used for factory production-related APIs with similar nested structure.
-
-### Structure
-
-```json
-[
-  {
-    "serialNo": 1,
-    "field": "field1",
-    "message": ["Error1", "Error2"],
-    "currValue": null,
-    "rejectedValue": null,
-    "errors": [
-      {
-        "serialNo": 1,
-        "field": "field1",
-        "message": ["Error1", "Error2"],
-        "currValue": null,
-        "rejectedValue": null,
-        "errors": [
-          {
-            "serialNo": 1,
-            "field": "field1",
-            "message": ["Error1", "Error2"],
-            "currValue": null,
-            "rejectedValue": null
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "serialNo": 1,
-    "field": "flowInfoList",
-    "message": ["FlowInfo has errors."],
-    "currValue": null,
-    "rejectedValue": null,
-    "errors": [
-      {
-        "serialNo": 1,
-        "field": "productId",
-        "message": ["Product Id is required"],
-        "currValue": null,
-        "rejectedValue": null
+        "errors": null
       },
       {
         "serialNo": 2,
-        "field": "sizeBreakupList",
-        "message": ["There are errors for size breakup."],
-        "errors": [
-          {
-            "serialNo": 1,
-            "field": "size",
-            "message": ["Size is required"],
-            "currValue": null,
-            "rejectedValue": null
-          }
-        ]
+        "field": "style",
+        "message": ["Style is required"],
+        "currValue": null,
+        "rejectedValue": null,
+        "errors": null
       }
     ]
   }
 ]
 ```
 
-### Key Points
-
-* Same structure as Orders
-* Maintained separately for domain clarity
-
----
-
-# 🔹 Common Field Definitions
+## Common Field Definitions
 
 | Field         | Type        | Description                             |
 |---------------|-------------|-----------------------------------------|
@@ -300,37 +126,8 @@ Used for factory production-related APIs with similar nested structure.
 | rejectedValue | Any         | Invalid value provided in request       |
 | errors        | List/Object | Nested child errors (recursive)         |
 
----
+### Key Points
 
-# 🔹 Design Notes
-
-* Nested structure is recursive → supports unlimited depth
+* Nested structure is recursive → supports unlimited depth. Depth is upto depth of JSON Payload
 * `errors = null` → indicates no child errors
 * `message` is always an array → supports multiple validations per field
-
----
-
-# 🔹 Recommendation (Best Practice)
-
-* Use one unified schema across APIs
-* Keep `errors` optional for flat APIs
-* Always return:
-
-  * `field`
-  * `message`
-  * `rejectedValue`
-
----
-
-# 🔹 Suggested Unified Schema (Optional Refactor)
-
-```json
-{
-  "serialNo": 1,
-  "field": "string",
-  "message": ["string"],
-  "rejectedValue": "any",
-  "currValue": "any",
-  "errors": []
-}
-```
