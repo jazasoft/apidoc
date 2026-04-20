@@ -4,8 +4,8 @@ This document defines the standardized error response formats used across all AP
 
 We provide two types of error responses based on the nature of the API operation:
 
- 1. <b>Generic Error Response</b> - Used for standard API failures where a single request results in a single error.
- 2. <b>Batch API Error Response</b> - Used for bulk operations where multiple records are processed, and each record may have independent validation errors.
+ 1. <b>Generic Error Response</b> - Used for standard API failures.
+ 2. <b>Field Error Response</b> - Used to indicate specific errors at field level. This error reponse can be nested and hierarchy is as per payload hierarchy.  
 
 ## Generic Error Response (Common for All APIs)
 
@@ -48,9 +48,9 @@ This is the base error response returned for all API failures.
 | moreInfo   | String   | More Information regarding error     |
 | body       | String   | Error Body                           |
 
-## Generic Batch API Error Response
+## Field Error Response
 
-Used for bulk APIs where multiple records can fail.
+Field level error response
 
 > Structure
 
@@ -62,7 +62,15 @@ Used for bulk APIs where multiple records can fail.
     "message": ["Error message"],
     "currValue": "curr_value",
     "rejectedValue": "invalid_value",
-    "errors": null
+    "errors": [
+      {
+        "serialNo": 1,
+        "field": "nestedField",
+        "message": ["Error message"],
+        "currValue": "curr_value",
+        "rejectedValue": "invalid_value"
+      }
+    ]
   }
 ]
 ```
@@ -73,28 +81,39 @@ Used for bulk APIs where multiple records can fail.
 [
   {
     "serialNo": 1,
-    "field": "name",
-    "message": ["Season name is required"],
+    "field": "poRef",
+    "message": ["PO Reference is required"],
     "currValue": null,
     "rejectedValue": null,
     "errors": null
   },
   {
     "serialNo": 2,
-    "field": "name",
-    "message": ["Season name is required"],
+    "field": "flowInfoList",
+    "message": ["There are errors in FlowInfo"],
     "currValue": null,
     "rejectedValue": null,
-    "errors": null
+    "errors": [
+      {
+        "serialNo": 1,
+        "field": "style",
+        "message": ["Style is required"],
+        "currValue": null,
+        "rejectedValue": null,
+        "errors": null
+      },
+      {
+        "serialNo": 2,
+        "field": "style",
+        "message": ["Style is required"],
+        "currValue": null,
+        "rejectedValue": null,
+        "errors": null
+      }
+    ]
   }
 ]
 ```
-
-### Key Points
-
-* Each object represents one failed record
-* `serialNo` maps to input index
-* Used in bulk upload APIs
 
 ## Common Field Definitions
 
@@ -109,6 +128,6 @@ Used for bulk APIs where multiple records can fail.
 
 ### Key Points
 
-* Nested structure is recursive → supports unlimited depth
+* Nested structure is recursive → supports unlimited depth. Depth is upto depth of JSON Payload
 * `errors = null` → indicates no child errors
 * `message` is always an array → supports multiple validations per field

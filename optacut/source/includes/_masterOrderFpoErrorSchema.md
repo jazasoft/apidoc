@@ -1,6 +1,6 @@
 # Master, Order and FPO Error Schema
 
-This document includes <b>Error Structures</b> and <b>Sample Responses</b> for <b>Master(Customer, Supplier, Product, etc.), Order and FPO API's.</b>
+This document includes <b>Field Error Structures</b> and <b>Sample Responses</b> for <b>Master(Customer, Supplier, Product, etc.), Order and FPO API's.</b>
 
 ## Master Data Error Schema
 
