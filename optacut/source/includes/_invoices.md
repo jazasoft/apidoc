@@ -39,7 +39,7 @@ This endpoint creates a invoice.
       "uomWidth": "centimeter",
       "uomLength": "meter",
       "orderingGsm": null,
-      "rollForm": "Open"
+      "rollForm": "Open",
       "orderingCsv": "Grade 3",
       "orderingWarpShrinkage": 2.3,
       "orderingWeftShrinkage": 3.5,
@@ -47,7 +47,7 @@ This endpoint creates a invoice.
       "invoiceQty": 1000,
       "grn": "GRN#100",
       "grnQty": 1000,
-      "grnDate": "2023-10-06",
+      "grnDate": "2023-10-06T00:00:00Z"
       "warehouse": "wh-central",
       "unitId": "unit1",
       "blanketQty": 0.5,
@@ -122,7 +122,7 @@ This endpoint creates a invoice.
       "orderingWidth": 60.0,
       "invoiceQty": 1000.0,
       "grnQty": 210.8,
-      "grnDate": 1696550400000,
+      "grnDate": "2023-10-06T00:00:00Z",
       "blanketQty": 0.5,
       "rollCount": 2,
       "orderingCsv": "Grade 3",
