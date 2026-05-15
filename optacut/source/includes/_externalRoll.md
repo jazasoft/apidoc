@@ -140,6 +140,8 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "rollNo": "INV-100/R100",
     "supplierRollNo": "R100",
     "length": 100.2,
+    "passQty": 80.2,
+    "failQty": 20,
     "weight": null,
     "blanketQty": 0,
     "width": 144,
@@ -163,6 +165,8 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "supplierRollNo": "R100",
     "length": null,
     "weight": 20.5,
+    "passQty": 20.5,
+    "failQty": 0,
     "blanketQty": 0,
     "width": 144.2,
     "finishedWidth": 145.5,
@@ -191,6 +195,8 @@ This endpoint updates QC for Roll in OptaCut from External System.
     "rollNo": "string",
     "supplierRollNo": "string",
     "length": "double",
+    "passQty": "double",
+    "failQty": "double",
     "weight": "double",
     "blanketQty": "int",
     "width": "double",
@@ -218,6 +224,8 @@ This endpoint updates QC for Roll in OptaCut from External System.
 | rollNo                 | String | Required         | Factory Roll Number                                                                 |
 | supplierRollNo         | String |                  | Supplier Roll Number                                                                |
 | length                 | Double | Required (Woven) | Inspected Length                                                                    |
+| passQty                | Double | Required         | Pass Qty of the Roll(Used in SAP Integration Only)                                  |
+| failQty                | Double | Required         | Fail Qty of the Roll(Used in SAP Integration Only)                                  |
 | weight                 | Double | Required (Knits) | Inspected Weight                                                                    |
 | blanketQty             | Double |                  | Blanket Qty                                                                         |
 | width                  | Double | Required         | Cuttable Width                                                                      |
